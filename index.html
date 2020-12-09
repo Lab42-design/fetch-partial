@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>pfetch html partials example</title>
+</head>
+<body>
+
+
+
+<nav id="header"></nav>
+
+
+
+<div id="content"></div>
+
+
+
+<footer id="footer">
+</footer>
+
+
+
+https://medium.com/beginners-guide-to-mobile-web-development/javascript-introduction-to-es6-classes-ecb2db9fe985
+
+
+
+
+
+<script type="text/javascript" src="./vendor/fetch.umd.js"></script>
+
+<script type="text/javascript" src="./js/view.js"></script>
+
+<script type="text/javascript">
+
+
+// 
+const header = new View('./_partials/_header.html', '#header')
+header.fetchPartial()
+
+let content = new View('./_partials/_content.html', '#content')
+content.fetchPartial()
+
+const footer = new View('./_partials/_footer.html', '#footer')
+footer.fetchPartial()
+
+
+
+
+</script>
+
+</body>
+</html>
