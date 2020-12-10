@@ -36,7 +36,7 @@ https://medium.com/beginners-guide-to-mobile-web-development/javascript-introduc
 <script type="text/javascript" src="./vendor/fetch.umd.js"></script>
 
 <script type="text/javascript" src="./app/view.js"></script>
-<script type="text/javascript" src="./app/payload.js"></script>
+
 
 <script type="text/javascript">
 
@@ -44,48 +44,25 @@ https://medium.com/beginners-guide-to-mobile-web-development/javascript-introduc
 
 
 
-// route
-var rootURL = window.location.hostname;
-console.log('rootURL:', rootURL)
-
-var pathArray = window.location.pathname.split('/');
+	// route
+var pathArray = window.location.pathname.split('//');
 console.log('pathArray:', pathArray)
 
-var secondLevelLocation = pathArray[2];
-console.log('secondLevelLocation:', secondLevelLocation)
-
-
-const routes = [
-	'',
-	'mikka1',
-	'makka1'
-]
-
-
-console.log(routes.includes( pathArray[1] )); //true
-console.log(routes.indexOf(pathArray[1]) >= 0); //true
 
 
 
-// window.location.pathname = "/"
 
 
 
-try
-{
-	// views / partials
-	const header = new View('./_partials/_header.html', '#header')
-	header.fetchPartial()
+// views / partials
+const header = new View('./_partials/_header.html', '#header')
+header.fetchPartial()
 
-	let content = new View('./_partials/_content.html', '#content')
-	content.fetchPartial()
+let content = new View('./_partials/_content.html', '#content')
+content.fetchPartial()
 
-	const footer = new View('./_partials/_footer.html', '#footer')
-	footer.fetchPartial()
-}
-catch(e){}
-
-
+const footer = new View('./_partials/_footer.html', '#footer')
+footer.fetchPartial()
 
 
 
