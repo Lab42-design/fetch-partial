@@ -10,18 +10,15 @@
 
 <nav id="header"></nav>
 
-<ul class="navbar-list">
-	<li class="navbar-item"><a href="/">Home</a></li>
-	<li class="navbar-item"><a href="/mikka">mikka</a></li>
-	<li class="navbar-item"><a href="/makka">makka</a></li>
-	<li class="navbar-item"><a href="/error">error</a></li>
+<hr />
 
-</ul>
 
 
 <div id="content"></div>
 
-<code id="root"></code>
+
+
+<hr />
 
 <footer id="footer">
 </footer>
@@ -64,17 +61,17 @@ footer.fetchPartial()
 // routes
 // home
 page('/', () => {
-	var home = new Payload('./app/database/payload.json', 'root')
+	var home = new Payload('./app/database/payload.json', 'code')
 	home.fetchJson()
 });
 
 page('/mikka', () => {
-	var mikka = new Payload('./app/database/payload-mikka.json', 'root')
+	var mikka = new Payload('./app/database/payload-mikka.json', 'code')
 	mikka.fetchJson()
 });
 
 page('/makka', () => {
-	var makka = new Payload('./app/database/payload-makka.json', 'root')
+	var makka = new Payload('./app/database/payload-makka.json', 'code')
 	makka.fetchJson()
 });
 
@@ -82,7 +79,7 @@ page('/makka', () => {
 
 // 404 route
 page('*', function(){
-	const mikka = new Payload('./app/database/payload-404.json', 'root')
+	const mikka = new Payload('./app/database/payload-404.json', 'code')
 	mikka.fetchJson()
 });
 
