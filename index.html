@@ -11,10 +11,11 @@
 <nav id="header"></nav>
 
 <ul class="navbar-list">
-	<li class="navbar-item"><a href="#" onclick="onNavigate('/'); return false;">Home</a></li>
-	<li class="navbar-item"><a href="#" onclick="onNavigate('/mikka'); return false;">mikka</a></li>
-	<li class="navbar-item"><a href="#" onclick="onNavigate('/makka'); return false;">makka</a></li>
-	<li class="navbar-item"><a href="#" onclick="onNavigate('/makka/43'); return false;">makka / 42 / error</a></li>
+	<li class="navbar-item"><a href="/">Home</a></li>
+	<li class="navbar-item"><a href="/mikka">mikka</a></li>
+	<li class="navbar-item"><a href="/makka">makka</a></li>
+	<li class="navbar-item"><a href="/error">error</a></li>
+
 </ul>
 
 
@@ -38,116 +39,55 @@ https://locutus.io/php/filesystem/pathinfo/
 <script type="text/javascript" src="./app/view.js"></script>
 <script type="text/javascript" src="./app/payload.js"></script>
 
+<script src="https://unpkg.com/page/page.js"></script>
+
+
+
+
 <script type="text/javascript">
 
 
 
+// templating stuff
+const header = new View('/_partials/_header.html', '#header')
+header.fetchPartial()
 
+let content = new View('/_partials/_content.html', '#content')
+content.fetchPartial()
 
-// route
-var rootURL = window.location.hostname;
-console.log('rootURL:', rootURL)
-
-var pathArray = window.location.pathname.split('/');
-console.log('pathArray:', pathArray)
-
-var secondLevelLocation = pathArray[2];
-console.log('secondLevelLocation:', secondLevelLocation)
-
-
-const routes = [
-	'',
-	'mikka1',
-	'makka1'
-]
-
-
-console.log(routes.includes( pathArray[1] )); //true
-console.log(routes.indexOf(pathArray[1]) >= 0); //true
+const footer = new View('/_partials/_footer.html', '#footer')
+footer.fetchPartial()
 
 
 
-// window.location.pathname = "/"
+// routes
+// home
+page('/', () => {
+	var home = new Payload('./app/database/payload.json', 'root')
+	home.fetchJson()
+});
+
+page('/mikka', () => {
+	var mikka = new Payload('./app/database/payload-mikka.json', 'root')
+	mikka.fetchJson()
+});
+
+page('/makka', () => {
+	var makka = new Payload('./app/database/payload-makka.json', 'root')
+	makka.fetchJson()
+});
 
 
 
-try
-{
-	// views / partials
-	const header = new View('./_partials/_header.html', '#header')
-	header.fetchPartial()
-
-	let content = new View('./_partials/_content.html', '#content')
-	content.fetchPartial()
-
-	const footer = new View('./_partials/_footer.html', '#footer')
-	footer.fetchPartial()
-}
-catch(e){}
+// 404 route
+page('*', function(){
+	const mikka = new Payload('./app/database/payload-404.json', 'root')
+	mikka.fetchJson()
+});
 
 
 
-
-
-// json
-// let payload = new Payload('./app/database/payload.json', 'code')
-// payload.fetchJson()
-
-
-
-
-
-
-
-
-
-
-
-// route / url
-// console.log(window.location)
-/*
-const mikka = new Payload('./app/database/payload-mikka.json', 'root')
-const makka = new Payload('./app/database/payload-makka.json', 'root')
-const home = new Payload('./app/database/payload.json', 'root')
-
-const routes = {
-	'/': home,
-	'/mikka': mikka,
-	'/makka': makka
-}
-
-const rootDiv = document.getElementById('root')
-rootDiv.innerHTML = routes[window.location.pathname]
-
-const onNavigate = (pathname) => {
-	window.history.pushState(
-		{},
-		pathname,
-		window.location.origin + pathname
-	)
-		// console.log(routes[pathname])
-		rootDiv.innerHTML = routes[pathname].fetchJson() 
-	}
-	window.onpopstate = () => {
-	rootDiv.innerHTML = routes[window.location.pathname]
-}
-
-// get path from addressbar
-onNavigate(window.location.pathname)
-
-
-
-
-
-
-
-
-
-window.addEventListener('error', function(e) {
-    console.log(e);
-}, true);
-*/
-
+page.start();
 
 
 </script>
