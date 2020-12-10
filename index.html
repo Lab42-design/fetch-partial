@@ -8,32 +8,28 @@
 
 
 
+<!-- header -->
 <nav id="header"></nav>
-
-<hr />
-
+<!-- / header -->
 
 
+
+<!-- content -->
 <div id="content"></div>
+<!-- / content -->
 
 
 
-<hr />
-
-<footer id="footer">
-</footer>
-
+<!-- footer -->
+<footer id="footer"></footer>
+<!-- / footer -->
 
 
-https://medium.com/beginners-guide-to-mobile-web-development/javascript-introduction-to-es6-classes-ecb2db9fe985
 
-
-https://locutus.io/php/filesystem/pathinfo/
 
 
 <script type="text/javascript" src="./vendor/fetch.umd.js"></script>
 <script type="text/javascript" src="./vendor/page.js"></script>
-
 <script type="text/javascript" src="./app/view.js"></script>
 <script type="text/javascript" src="./app/payload.js"></script>
 
@@ -47,40 +43,37 @@ https://locutus.io/php/filesystem/pathinfo/
 
 
 // templating stuff
-const header = new View('/_partials/_header.html', '#header')
-header.fetchPartial()
+View.fetchPartial('/_partials/_header.html', '#header')
 
-let content = new View('/_partials/_content.html', '#content')
-content.fetchPartial()
+View.fetchPartial('/_partials/_content.html', '#content')
 
-const footer = new View('/_partials/_footer.html', '#footer')
-footer.fetchPartial()
+View.fetchPartial('/_partials/_footer.html', '#footer')
 
 
 
 // routes
 // home
 page('/', () => {
-	var home = new Payload('./app/database/payload.json', 'code')
-	home.fetchJson()
+	var payload = new Payload('./app/database/payload.json', 'code')
+	payload.fetchJson()
 });
 
 page('/mikka', () => {
-	var mikka = new Payload('./app/database/payload-mikka.json', 'code')
-	mikka.fetchJson()
+	var payload = new Payload('./app/database/payload-mikka.json', 'code')
+	payload.fetchJson()
 });
 
 page('/makka', () => {
-	var makka = new Payload('./app/database/payload-makka.json', 'code')
-	makka.fetchJson()
+	var payload = new Payload('./app/database/payload-makka.json', 'code')
+	payload.fetchJson()
 });
 
 
 
 // 404 route
 page('*', function(){
-	const mikka = new Payload('./app/database/payload-404.json', 'code')
-	mikka.fetchJson()
+	const payload = new Payload('./app/database/payload-404.json', 'code')
+	payload.fetchJson()
 });
 
 

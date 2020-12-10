@@ -14,11 +14,11 @@ class View {
         this._target = target
     }
     
-    fetchPartial() {
-        fetch(this._partial).then(function (response) {
+    static fetchPartial(partial, target) {
+        fetch(partial).then(function (response) {
             return response.text()
         }).then((html) => {
-            let elem = document.querySelector( this._target )
+            let elem = document.querySelector(target)
             elem.innerHTML = html
         }).catch(function (e) {
             console.warn('Something went wrong.', e)
